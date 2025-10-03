@@ -2,11 +2,11 @@ import { Box, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 const menuItems = [
-  { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Portfolio", path: "/portfolio" },
-  { label: "Blog", path: "/blog" },
-  { label: "Contact", path: "/contact" },
+  { label: "Home", path: "" },        // index route
+  { label: "About", path: "about" },
+  { label: "Portfolio", path: "portfolio" },
+  { label: "Blog", path: "blog" },
+  { label: "Contact", path: "contact" },
 ];
 
 export default function MenuItems() {
