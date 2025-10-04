@@ -16,6 +16,7 @@ export default function MenuItems() {
         <NavLink
           key={item.path}
           to={item.path}
+          end={item.path === ""}
           style={({ isActive }) => ({
             textDecoration: "none",
             borderBottom: isActive ? "2px solid #1976d2" : "none",
