@@ -1,15 +1,26 @@
-import React, { useEffect } from "react";
-import type { Profile } from "../../types/profile";
-import { getProfile } from "../../services/profileService";
+// import { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import { Button, Typography } from "@mui/material";
+import type { User } from "../../types/User";
+import { userApi } from "../../services/userApi";
+import { useQuery } from "@tanstack/react-query";
 
 export default function HeroDescription() {
-    const [profile, setProfile] = React.useState<Profile | null>(null);
-  useEffect(() => {
-    getProfile().then((data) => setProfile(data));
-  }, []);
-  if (!profile) return <div>Loading...</div>;
+    // const [user, setUser] = useState<User | null>(null);
+    // useEffect(() => {
+    //     const fetchUser = async () => {
+    //         const userData = await getUserByUsername("lehoang_92");
+    //         setUser(userData);
+    //     };
+    //     fetchUser();
+    // }, []);
+    // if (!user) return <div>Loading...</div>; 
+    const {data: user, isLoading, isError} = useQuery<User>({
+        queryKey: ['user', 'lehoang_92'],
+        queryFn: () => userApi.getUserByUsername('lehoang_92'),
+    });
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error loading user data.</div>;
     return (
         <Box>
             <Typography
@@ -19,10 +30,10 @@ export default function HeroDescription() {
                 mb: 2,
                 }}
             >
-                {profile.description}
-                I lorem ipsum those lines you get — a short paragraph introducing yourself,
+                {user?.bio}
+                {/* I lorem ipsum those lines you get — a short paragraph introducing yourself,
                 what you build and what you love to do. Keep it concise and focused so visitors
-                instantly understand your value.
+                instantly understand your value. */}
             </Typography>
 
             <Button

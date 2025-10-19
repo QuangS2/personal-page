@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { Box } from "@mui/system";
 
-export default function Layout() {
+export default function MainLayout() {
     return (
         <Box sx={{
         display: "flex",
